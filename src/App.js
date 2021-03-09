@@ -1,7 +1,11 @@
+import Button from 'react-bootstrap/Button';
+
 function App() {
   return (
     <div>
-      a
+      <Button variant="primary" className="mr-2">
+        a
+      </Button>
     </div>
   );
 }
