@@ -1,9 +1,11 @@
 import Button from 'react-bootstrap/Button';
+import { Nav } from './layout/header/nav';
 
 function App() {
   return (
     <div>
-      <Button variant="primary" className="mr-2">
+      <Nav />
+      <Button variant="primary" className="mr-2 d-block">
         a
       </Button>
     </div>
