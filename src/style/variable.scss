@@ -1,0 +1,44 @@
+// 文字サイズ
+$h2: 36px;
+$h3: 24px;
+$p: 18px;
+
+// じぶんセキのイメージカラー
+$main_color: #5ACABD;
+
+// will,can,mustのイメージカラー
+$will_color: #338ABB;
+$can_color: #4AA451;
+$must_color: #EBA43E;
+$will_hover_color: #5FB1D5;
+$can_hover_color: #57C292;
+$must_hover_color: #F1B975;
+
+$wcm_colors: (
+    will: #338ABB,
+    can: #4AA451,
+    must: #EBA43E
+);
+
+$wcm_hover_colors: (
+    will: #5FB1D5,
+    can: #57C292,
+    must: #F1B975
+);
+
+// ここからメディアクエリ
+$pc: 768px; // PC
+$sp: 767px; // スマホ
+@mixin pc {
+    @media (min-width: ($pc)) {
+        @content;
+    }
+}
+
+@mixin sp {
+    @media (max-width: ($sp)) {
+        @content;
+    }
+}
+
+// ここまでメディアクエリ
