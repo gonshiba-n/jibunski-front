@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import './styles/layouts/default.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import './styles/layouts/app.scss';
+
 ReactDOM.render(
     <App />,
     document.getElementById('root')

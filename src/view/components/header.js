@@ -1,4 +1,7 @@
-import React from 'react'
+import
+  React,
+  { useState, useEffect, useRef }
+from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Navbar from 'react-bootstrap/Navbar'
@@ -8,8 +11,30 @@ import Button from 'react-bootstrap/Button'
 import '../../styles/layouts/home/home.scss'
 
 export const Header = () => {
+
+  const [white, setState] = useState("bg-transparent")
+
+  const elm = useRef(0)
+
+  const scrollCheck = () => {
+    if ((window.pageYOffset - elm.current.offsetTop) <= 0){
+      // Navbarの高さが0の時
+      setState("bg-transparent")
+    }else{
+      // Navbarの高さが0以外の時
+      setState("bg")
+    }
+  }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      window.addEventListener("scroll", event => scrollCheck())
+    }
+      handleScroll()
+  }, [ setState ])
+
   return(
-    <Navbar fixed="top" collapseOnSelect expand="md" bg="light" variant="light">
+    <Navbar ref={ elm } fixed="top" collapseOnSelect expand="md" className={ white } variant="light">
       <Navbar.Brand href="/">
         <img
           src={`${process.env.PUBLIC_URL}/logo.svg`}
