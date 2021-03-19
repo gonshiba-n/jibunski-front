@@ -32,13 +32,13 @@ export default function Home() {
           <h2 className="title">
             - Mission -
           </h2>
-          <div class="mission">
+          <div className="mission">
             <h3>
               やりたいことを明確にして、目標に向かって頑張る
               <span>「あなた」</span>をサポートします。
             </h3>
           </div>
-          <div class="empathy">
+          <div className="empathy">
             <p>やりたいことを実現させたい！</p>
             <p>自分が何をしたいか分からない...</p>
             <p>仕事や勉強のモチベーションが上がらない...</p>

@@ -1,18 +1,17 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import { Nav } from '../components/nav'
+import { Header } from './view/components/header'
 
-import Home from "./home/Home";
+import Home from './view/layouts/home/Home'
 
 export default function App() {
   return (
     <div>
-      <Nav />
+      <Header />
       <BrowserRouter>
         <Switch>
           <Route exact path={ "/" } component={ Home } />
-          {/* <Route exact path={ "/login" } component={ Login } /> */}
         </Switch>
       </BrowserRouter>
     </div>
