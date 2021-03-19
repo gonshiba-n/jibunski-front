@@ -2,15 +2,13 @@ import
   React,
   { useState, useEffect, useRef }
 from 'react'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
 
-import '../../styles/layouts/home/home.scss'
+import '../../styles/components/header.scss'
 
-export const Header = () => {
+export default function Header() {
 
   const [white, setState] = useState("bg-transparent")
 
