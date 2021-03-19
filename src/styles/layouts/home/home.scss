@@ -1,0 +1,143 @@
+@import "../variable";
+
+// Home共通スタイル
+.section{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.title{
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+
+.signin{
+  background-color: $will_color!important;
+  border: none!important;
+  &:hover{
+    background-color: $will_hover_color!important;
+  }
+}
+.login{
+  background-color: $can_color!important;
+  border: none!important;
+  &:hover{
+    background-color: $can_hover_color!important;
+  }
+}
+.guest-login{
+  background-color: $must_color!important;
+  border: none!important;
+  color: #fff!important;
+  &:hover{
+    background-color: $must_hover_color!important;
+  }
+}
+// Home共通スタイル
+
+// ここからキャッチコピー
+.catch-copy {
+  background: url('../../img/top-bg.jpg') no-repeat center center;
+  background-size: cover;
+  height: 500px;
+  padding: 15% 0 15% 0;
+  position: relative;
+  border-bottom-right-radius: 1000px 150px;
+  border-bottom-left-radius: 1000px 150px;
+
+  .jumbotron {
+    background-color: rgba(255, 255, 255, 0);
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+  }
+  .cp-discription {
+    color: #fff;
+    text-shadow: 2px 2px 0 #000;
+  }
+}
+// ここまでキャッチコピー
+
+// ここからミッション
+.missions{
+    padding: 50px 0 50px 0;
+    .mission{
+        h3{
+            padding: 30px 0 0 0;
+            font-size: $h3;
+            font-weight: bold;
+            span{
+                color: red;
+            }
+        }
+    }
+    .empathy{
+        padding: 40px 2% 40px 2%;
+        p{
+            font-weight: bold;
+            line-height: 25px;
+        }
+        h3{
+            padding: 30px 0 0 0;
+            font-size: $h3;
+            font-weight: bold;
+        }
+    }
+}
+// ここまでミッション
+
+// ここからサービス
+.services{
+    background-color: rgba(238, 255, 230, 0.7);
+    padding: 50px 0 50px 0;
+    border-top-right-radius: 1000px 150px;
+    border-top-left-radius: 1000px 150px;
+    .analysis,
+    .target,
+    .company{
+        padding: 40px 2% 40px 2%;
+        .icon{
+            font-size: 80px;
+            color: $main_color;
+        }
+        h3{
+            padding: 30px 0 30px 0;
+            font-size: $h3;
+            font-weight: bold;
+        }
+        p{
+            font-weight: bold;
+            line-height: 25px;
+        }
+    }
+    h3{
+        padding: 30px 0 0 0;
+        font-size: $h3;
+        font-weight: bold;
+        color: $main_color;
+        span{
+            border-bottom: 1px solid $main_color;
+        }
+    }
+}
+// ここまでサービス
+
+// ここからスタート
+.start{
+    padding: 50px 0 50px 0;
+    h2{
+        font-size: $h2;
+        font-weight: bold;
+    }
+    p{
+        padding: 30px 0 30px 0;
+        font-size: $p;
+        font-weight: bold;
+    }
+    .btn{
+        margin: 10px auto;
+        width: 200px;
+    }
+}
+
+// ここまでスタート
