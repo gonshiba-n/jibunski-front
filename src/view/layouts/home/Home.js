@@ -2,13 +2,15 @@ import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 
 import '../../../styles/layouts/home/home.scss'
+import Btn from "../../components/button";
 
 
 export default function Home() {
+
+  let a = "Signup"
   return(
     <div>
       {/* キャッチコピー */}
@@ -19,9 +21,9 @@ export default function Home() {
             <p>
               やりたいことを明確にして目標に向かって頑張る「あなた」をサポート
             </p>
-            <Button size="lg" variant="primary" className="signin m-2">Signin</Button>
-            <Button size="lg" variant="success" className="login m-2">Login</Button>
-            <Button size="lg" variant="warning" className="guest-login m-2">ゲストログイン</Button>
+            <Btn size="lg" variant="primary" className="signin m-2" nameValue="Signup" />
+            <Btn size="lg" variant="success" className="login m-2" nameValue="Login" />
+            <Btn size="lg" variant="warning" className="guest-login m-2" nameValue="ゲストログイン" />
           </Container>
         </Jumbotron>
       </Row>
@@ -122,7 +124,7 @@ export default function Home() {
         <Col className="text-center start">
           <h2 className="title">さあ、やりたいことを見つけよう！</h2>
           <p>登録はこちらから</p>
-          <Button size="lg" variant="primary" className="signin m-2">Signin</Button>
+          <Btn size="lg" variant="primary" className="signin m-2" nameValue="Signup" />
         </Col>
       </Row>
     </div>

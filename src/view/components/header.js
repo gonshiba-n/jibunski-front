@@ -4,8 +4,8 @@ import
 from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import Button from 'react-bootstrap/Button'
 
+import Btn from "../components/button"
 import '../../styles/components/header.scss'
 
 export default function Header() {
@@ -45,12 +45,18 @@ export default function Header() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto mr-5">
-          <Button size="sm" variant="primary" className="signin m-2">
-            <Nav.Link href="#features" className="text-white">Signup</Nav.Link>
-          </Button>
-          <Button size="sm" variant="primary" className="login m-2">
-            <Nav.Link href="#pricing" className="text-white">Login</Nav.Link>
-          </Button>
+          <Btn
+            size="sm"
+            variant="primary"
+            className="signin m-2"
+            nameValue={<Nav.Link href="#features" className="text-white">Signup</Nav.Link>}
+          />
+          <Btn
+            size="sm"
+            variant="primary"
+            className="login m-2"
+            nameValue={<Nav.Link href="#pricing" className="text-white">Login</Nav.Link>}
+          />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
