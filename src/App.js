@@ -1,21 +1,24 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
+
 import Header from './view/components/header'
 import Footer from './view/components/footer'
 
 import Home from './view/layouts/home/Home'
+import Registration from './view/layouts/home/auth/Registration'
 
 export default function App() {
   return (
     <div>
-      <Header />
-        <BrowserRouter>
-          <Switch>
-            <Route exact path={ "/" } component={ Home } />
-          </Switch>
-        </BrowserRouter>
-      <Footer />
+      <BrowserRouter>
+        <Header />
+        <Switch>
+          <Route exact path={ "/" } component={ Home } />
+          <Route exact path={ "/signup" } component={ Registration } />
+        </Switch>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

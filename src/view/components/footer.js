@@ -6,7 +6,7 @@ import '../../styles/components/footer.scss'
 
 export default function Footer() {
   return(
-  <Row className="text-center footer">
+    <Row className="text-center footer" id="footer">
     <Col className="copyright">
       <img
         src={`${process.env.PUBLIC_URL}/logo.svg`}

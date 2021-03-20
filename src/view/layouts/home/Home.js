@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Jumbotron from 'react-bootstrap/Jumbotron'
+import { Link } from 'react-router-dom'
 
 import '../../../styles/layouts/home/home.scss'
 import Btn from "../../components/button";
@@ -10,7 +11,6 @@ import Btn from "../../components/button";
 
 export default function Home() {
 
-  let a = "Signup"
   return(
     <div>
       {/* キャッチコピー */}
@@ -21,9 +21,30 @@ export default function Home() {
             <p>
               やりたいことを明確にして目標に向かって頑張る「あなた」をサポート
             </p>
-            <Btn size="lg" variant="primary" className="signin m-2" nameValue="Signup" />
-            <Btn size="lg" variant="success" className="login m-2" nameValue="Login" />
-            <Btn size="lg" variant="warning" className="guest-login m-2" nameValue="ゲストログイン" />
+            <Link to="/signup">
+              <Btn
+                size="lg"
+                variant="primary"
+                className="signin m-2"
+                nameValue="Signup"
+              />
+            </Link>
+            <Link to="/signup">
+              <Btn
+                size="lg"
+                variant="success"
+                className="login m-2"
+                nameValue="Login"
+              />
+            </Link>
+            <Link to="/signup">
+              <Btn
+                size="lg"
+                variant="warning"
+                className="guest-login m-2"
+                nameValue="ゲストログイン"
+              />
+            </Link>
           </Container>
         </Jumbotron>
       </Row>
@@ -124,7 +145,14 @@ export default function Home() {
         <Col className="text-center start">
           <h2 className="title">さあ、やりたいことを見つけよう！</h2>
           <p>登録はこちらから</p>
-          <Btn size="lg" variant="primary" className="signin m-2" nameValue="Signup" />
+          <Link to="/signup">
+            <Btn
+              size="lg"
+              variant="primary"
+              className="signin m-2"
+              nameValue="Signup"
+            />
+          </Link>
         </Col>
       </Row>
     </div>
