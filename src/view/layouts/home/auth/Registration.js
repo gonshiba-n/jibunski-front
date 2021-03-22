@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Form from 'react-bootstrap/Form';
@@ -13,6 +13,10 @@ export default function Registration() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
+  const [errorName, setErrorName] = useState("")
+  const [errorEmail, setErrorEmail] = useState("")
+  const [errorPass, setErrorPass] = useState("")
+  const [errorPassConfir, setErrorPassConfir] = useState("")
 
   // 背景追加、フッター隠し
   function ClassNameAdd(){
@@ -42,12 +46,24 @@ export default function Registration() {
     },
     { withCredentials: true }
         ).then(response => {
-      console.log("registration res", response)
+      if(response.data.status === 'created'){
+        console.log('OK')
+      }else{
+        console.log(response)
+        ErrorMessage(response)
+      }
     }).catch(error => {
       console.log("error_message error", error)
     })
     console.log("イベント発火")
     event.preventDefault()
+  }
+
+  const ErrorMessage = (response) =>{
+    setErrorName(response.data.message.name)
+    setErrorEmail(response.data.message.email)
+    setErrorPass(response.data.message.password)
+    setErrorPassConfir(response.data.message.password_confirmation)
   }
 
   return(
@@ -57,6 +73,7 @@ export default function Registration() {
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicName">
             <Form.Label className="h3 text-white">User name</Form.Label>
+            <div className="text-white">{errorName}</div>
             <Form.Control
               type="name"
               placeholder="Enter name"
@@ -67,6 +84,7 @@ export default function Registration() {
 
           <Form.Group controlId="formBasicEmail">
             <Form.Label className="h3 text-white">Email address</Form.Label>
+            <div className="text-white">{errorEmail}</div>
             <Form.Control
               type="email"
               placeholder="Enter email"
@@ -77,6 +95,7 @@ export default function Registration() {
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label className="h3 text-white">Password</Form.Label>
+            <div className="text-white">{errorPass}</div>
             <Form.Control
               type="password"
               placeholder="Password"
@@ -87,8 +106,9 @@ export default function Registration() {
 
           <Form.Group controlId="formBasicPasswordConfirmation">
             <Form.Label className="h3 text-white">Password Confirmation</Form.Label>
+            <div className="text-white">{errorPassConfir}</div>
             <Form.Control
-              type="passwordConfirmation"
+              type="password"
               placeholder="PasswordConfirmation"
               value={passwordConfirmation}
               onChange={event => setPasswordConfirmation(event.target.value)}
@@ -98,7 +118,7 @@ export default function Registration() {
             </Form.Text>
           </Form.Group>
 
-          {/* <Col className="text-right"> */}
+          <Col className="text-right">
           <Btn
             size="lg"
             variant="primary"
@@ -106,7 +126,7 @@ export default function Registration() {
             className="mt-3 signin"
             nameValue="登録する"
           />
-          {/* </Col> */}
+          </Col>
         </Form>
       </Col>
     </Row>
