@@ -15,6 +15,7 @@ export default function Registration() {
   const Email = watch('email')
   const Password = watch('password')
   const PasswordConfirmation = watch('passwordConfirmation')
+  const [EmailUnique, setEmailUniqe] = useState("")
 
 
   // 背景追加、フッター隠し
@@ -49,6 +50,7 @@ export default function Registration() {
         console.log('OK')
       }else{
         console.log(response)
+        setEmailUniqe(response.data.message.email)
       }
     }).catch(error => {
       console.log("error_message error", error)
@@ -82,6 +84,7 @@ export default function Registration() {
             <Form.Label className="h3 text-white">Email address</Form.Label>
             {errors.email?.type === 'required' && <p className='formError text-white'>メールアドレスを入力してください</p>}
             {errors.email?.type === 'pattern' && <p className='formError text-white'>メールアドレスとして認識できません</p>}
+            {<div className='formError text-white'>{ EmailUnique }</div>}
             <div className="text-white"></div>
             <Form.Control
               name="email"
@@ -91,6 +94,7 @@ export default function Registration() {
                 required: true,
                 pattern: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/
               })}
+              onChange={event => setEmailUniqe("")}
             />
           </Form.Group>
 
