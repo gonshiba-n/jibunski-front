@@ -8,7 +8,7 @@ import axios from 'axios';
 import Btn from "../../../components/button";
 import '../../../../styles/layouts/home/auth/formlayout.scss';
 
-export default function Registration() {
+export default function Registration(props) {
 
   const { register, errors, handleSubmit, reset, watch} = useForm()
   const Name = watch('name')
@@ -16,21 +16,6 @@ export default function Registration() {
   const Password = watch('password')
   const PasswordConfirmation = watch('passwordConfirmation')
   const [EmailUnique, setEmailUniqe] = useState("")
-
-
-  // 背景追加、フッター隠し
-  function ClassNameAdd(){
-    const Body = document.getElementById('body')
-    const FooterNone = document.getElementById('footer')
-    Body.classList.add("body");
-    if(FooterNone){
-      FooterNone.classList.add("d-none")
-    }
-  };
-  useEffect(() => {
-    ClassNameAdd()
-  }, [])
-  // 背景追加、フッター隠し ここまで
 
   const root = process.env.REACT_APP_APP_BACKEND_PATH
   const onSubmit = (event) => {
@@ -47,7 +32,7 @@ export default function Registration() {
     { withCredentials: true }
         ).then(response => {
       if(response.data.status === 'created'){
-        console.log('OK')
+        props.handleSuccessfulAuthentication(response.data, props)
       }else{
         console.log(response)
         setEmailUniqe(response.data.message.email)
@@ -55,18 +40,19 @@ export default function Registration() {
     }).catch(error => {
       console.log("error_message error", error)
     })
-    console.log("イベント発火")
   }
 
   return(
+    <div className="bg-container">
     <Row className="formlayout">
+      <div>{props.loggedInStatus}</div>
       <Col md={8} className="mx-auto">
         <h2 className="text-white mb-3">Signup</h2>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group controlId="formBasicName">
             <Form.Label className="h3 text-white">User name</Form.Label>
-            {errors.name?.type === 'required' && <p className='formError text-white'>名前を入力してください</p>}
-            {errors.name?.type ===  'maxLength' && <p className='formError text-white'>30文字以下で名前を入力してください</p>}
+            {errors.name?.type === 'required' && <div className='formError text-white'>名前を入力してください</div>}
+            {errors.name?.type ===  'maxLength' && <div className='formError text-white'>30文字以下で名前を入力してください</div>}
             <div className="text-white"></div>
             <Form.Control
               name="name"
@@ -82,8 +68,8 @@ export default function Registration() {
           <Form.Group controlId="formBasicEmail">
             {/* ユニークはDBサーバーサイドでバリデーションを行う */}
             <Form.Label className="h3 text-white">Email address</Form.Label>
-            {errors.email?.type === 'required' && <p className='formError text-white'>メールアドレスを入力してください</p>}
-            {errors.email?.type === 'pattern' && <p className='formError text-white'>メールアドレスとして認識できません</p>}
+            {errors.email?.type === 'required' && <div className='formError text-white'>メールアドレスを入力してください</div>}
+            {errors.email?.type === 'pattern' && <div className='formError text-white'>メールアドレスとして認識できません</div>}
             {<div className='formError text-white'>{ EmailUnique }</div>}
             <div className="text-white"></div>
             <Form.Control
@@ -100,8 +86,8 @@ export default function Registration() {
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label className="h3 text-white">Password</Form.Label>
-            {errors.password?.type === "required" && <p className='formError text-white'>パスワードを入力してください</p>}
-            {errors.password?.type === "minLength" && <p className='formError text-white'>パスワードは6文字以上で入力してください</p>}
+            {errors.password?.type === "required" && <div className='formError text-white'>パスワードを入力してください</div>}
+            {errors.password?.type === "minLength" && <div className='formError text-white'>パスワードは6文字以上で入力してください</div>}
             <div className="text-white"></div>
             <Form.Control
               name="password"
@@ -116,8 +102,8 @@ export default function Registration() {
 
           <Form.Group controlId="formBasicPasswordConfirmation">
             <Form.Label className="h3 text-white">Password Confirmation</Form.Label>
-            {errors.passwordConfirmation?.type === 'required' && <p className='formError text-white'>確認用パスワードを入力してください</p>}
-            {errors.passwordConfirmation?.type === 'confirm' && <p className='formError text-white'>パスワードと一致しません</p>}
+            {errors.passwordConfirmation?.type === 'required' && <div className='formError text-white'>確認用パスワードを入力してください</div>}
+            {errors.passwordConfirmation?.type === 'confirm' && <div className='formError text-white'>パスワードと一致しません</div>}
             <div className="text-white"></div>
             <Form.Control
               name="passwordConfirmation"
@@ -145,5 +131,6 @@ export default function Registration() {
         </Form>
       </Col>
     </Row>
+    </div>
   )
 }

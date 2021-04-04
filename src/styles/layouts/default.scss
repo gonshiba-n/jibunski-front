@@ -97,4 +97,12 @@ input, select {
     box-shadow: none !important;
 }
 
+input[type="submit"]{
+    -webkit-appearance: none;
+}
+
+button[type="submit"]{
+    -webkit-appearance: none;
+}
+
 /* ここまでデフォルト無効化CSS */

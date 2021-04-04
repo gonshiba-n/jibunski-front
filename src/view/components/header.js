@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import Btn from "../components/button"
 import '../../styles/components/header.scss'
 
-export default function Header() {
+export default function Header(props) {
 
   const [white, setState] = useState("bg-transparent")
 
@@ -62,6 +62,9 @@ export default function Header() {
               nameValue="Login"
             />
           </Link>
+          <div>
+            {props.loggedInStatus}
+          </div>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
