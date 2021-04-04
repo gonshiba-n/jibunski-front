@@ -7,12 +7,11 @@ import Nav from 'react-bootstrap/Nav'
 import { Link } from 'react-router-dom'
 
 import Btn from "../components/button"
+import { Logout } from "../components/logout"
 import '../../styles/components/header.scss'
 
 export default function Header(props) {
-
   const [white, setState] = useState("bg-transparent")
-
   const elm = useRef(0)
 
   const scrollCheck = () => {
@@ -65,6 +64,13 @@ export default function Header(props) {
           <div>
             {props.loggedInStatus}
           </div>
+          <Logout
+            size="md"
+            variant="primary"
+            className="login m-2"
+            nameValue="Logout"
+            handleLogout={props.handleLogout}
+          />
         </Nav>
       </Navbar.Collapse>
     </Navbar>

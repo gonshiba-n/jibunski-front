@@ -16,7 +16,6 @@ export default function App(props) {
   const handleLogin = (data) => {
     setLoggedInStatus("ログイン中")
     setUser(data.user)
-    console.log(data.user)
   }
 
   const handleSuccessfulAuthentication = (data, props) => {
@@ -44,10 +43,18 @@ export default function App(props) {
     })
   }
 
+  const handleLogout = () => {
+    setLoggedInStatus("未ログイン")
+    setUser({})
+  }
+
   return (
     <div>
       <BrowserRouter>
-        <Header loggedInStatus={loggedInStatus} />
+        <Header
+          loggedInStatus={loggedInStatus}
+          handleLogout={handleLogout}
+        />
         <Switch>
           <Route exact path={ "/" } component={ Home } />
           <Route
