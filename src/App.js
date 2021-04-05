@@ -8,13 +8,13 @@ import Dashboard from './view/layouts/dashboard/Dashboard'
 import Header from './view/components/header'
 import Footer from './view/components/footer'
 
-export default function App(props) {
+export default function App() {
   // ログイン判定
-  const [loggedInStatus, setLoggedInStatus] = useState("未ログイン")
+  const [loggedInStatus, setLoggedInStatus] = useState(false)
   const [user, setUser] = useState({})
 
   const handleLogin = (data) => {
-    setLoggedInStatus("ログイン中")
+    setLoggedInStatus(true)
     setUser(data.user)
   }
 
@@ -31,11 +31,11 @@ export default function App(props) {
   const checkLoginStatus = () => {
     axios.get(root + "/logged_in", {withCredentials: true})
     .then(response => {
-      if(response.data.logged_in && loggedInStatus === "未ログイン"){
-        setLoggedInStatus("ログイン中")
+      if(response.data.logged_in && !loggedInStatus){
+        setLoggedInStatus(true)
         setUser(response.data.user)
-      }else if(!response.data.logged_in && loggedInStatus === "ログイン中"){
-        setLoggedInStatus("未ログイン")
+      }else if(!response.data.logged_in && loggedInStatus){
+        setLoggedInStatus(false)
         setUser({})
       }
     }).catch(error => {
@@ -44,7 +44,7 @@ export default function App(props) {
   }
 
   const handleLogout = () => {
-    setLoggedInStatus("未ログイン")
+    setLoggedInStatus(false)
     setUser({})
   }
 

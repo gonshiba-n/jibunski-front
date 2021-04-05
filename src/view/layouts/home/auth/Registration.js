@@ -45,7 +45,6 @@ export default function Registration(props) {
   return(
     <div className="bg-container">
     <Row className="formlayout">
-      <div>{props.loggedInStatus}</div>
       <Col md={8} className="mx-auto">
         <h2 className="text-white mb-3">Signup</h2>
         <Form onSubmit={handleSubmit(onSubmit)}>

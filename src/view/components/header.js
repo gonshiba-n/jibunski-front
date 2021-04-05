@@ -3,11 +3,8 @@ import
   { useState, useEffect, useRef }
 from 'react'
 import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import { Link } from 'react-router-dom'
 
-import Btn from "../components/button"
-import { Logout } from "../components/logout"
+import {HeaderItems} from "../components/headerItems"
 import '../../styles/components/header.scss'
 
 export default function Header(props) {
@@ -44,34 +41,10 @@ export default function Header(props) {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="ml-auto mr-5">
-          <Link to="/signup" className="text-white">
-            <Btn
-              size="md"
-              variant="primary"
-              className="signin m-2"
-              nameValue="Signup"
-            />
-          </Link>
-          <Link to="/login" className="text-white">
-            <Btn
-              size="md"
-              variant="primary"
-              className="login m-2"
-              nameValue="Login"
-            />
-          </Link>
-          <div>
-            {props.loggedInStatus}
-          </div>
-          <Logout
-            size="md"
-            variant="primary"
-            className="login m-2"
-            nameValue="Logout"
-            handleLogout={props.handleLogout}
-          />
-        </Nav>
+        <HeaderItems
+          loggedInStatus={props.loggedInStatus}
+          handleLogout={props.handleLogout}
+        />
       </Navbar.Collapse>
     </Navbar>
   )
