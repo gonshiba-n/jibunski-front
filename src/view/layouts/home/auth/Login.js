@@ -11,11 +11,9 @@ import '../../../../styles/layouts/home/auth/formlayout.scss';
 export default function Registration(props) {
 
   const { register, errors, handleSubmit, reset, watch } = useForm()
-  const Name = watch('name')
   const Email = watch('email')
   const Password = watch('password')
-  const PasswordConfirmation = watch('passwordConfirmation')
-  const [EmailUnique, setEmailUniqe] = useState("")
+  const [confirm, setConfirm] = useState("")
 
   const root = process.env.REACT_APP_APP_BACKEND_PATH
   const onSubmit = (event) => {
@@ -23,19 +21,18 @@ export default function Registration(props) {
       root + "/login",
       {
         user: {
-          name: Name,
           email: Email,
-          password: Password,
-          password_confirmation: PasswordConfirmation
+          password: Password
         }
       },
       { withCredentials: true }
     ).then(response => {
       if (response.data.status === 'created') {
         props.handleSuccessfulAuthentication(response.data, props)
+        console.log(response)
       } else {
         console.log(response)
-        setEmailUniqe(response.data.message.email)
+        setConfirm(response.data.message.email)
       }
     }).catch(error => {
       console.log("error_message error", error)
@@ -46,30 +43,14 @@ export default function Registration(props) {
     <div className="bg-container">
       <Row className="formlayout">
         <Col md={8} className="mx-auto">
-          <h2 className="text-white mb-3">Signup</h2>
+          <h2 className="text-white mb-3">Login</h2>
+          {/* Email,Password一致確認はDBサーバーサイドでバリデーションを行う */}
+          {<div className='formError text-white'>{confirm}</div>}
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group controlId="formBasicName">
-              <Form.Label className="h3 text-white">User name</Form.Label>
-              {errors.name?.type === 'required' && <div className='formError text-white'>名前を入力してください</div>}
-              {errors.name?.type === 'maxLength' && <div className='formError text-white'>30文字以下で名前を入力してください</div>}
-              <div className="text-white"></div>
-              <Form.Control
-                name="name"
-                type="name"
-                placeholder="ユーザー名を入力してください"
-                ref={register({
-                  required: true,
-                  maxLength: 30
-                })}
-              />
-            </Form.Group>
-
             <Form.Group controlId="formBasicEmail">
-              {/* ユニークはDBサーバーサイドでバリデーションを行う */}
               <Form.Label className="h3 text-white">Email address</Form.Label>
               {errors.email?.type === 'required' && <div className='formError text-white'>メールアドレスを入力してください</div>}
               {errors.email?.type === 'pattern' && <div className='formError text-white'>メールアドレスとして認識できません</div>}
-              {<div className='formError text-white'>{EmailUnique}</div>}
               <div className="text-white"></div>
               <Form.Control
                 name="email"
@@ -79,7 +60,7 @@ export default function Registration(props) {
                   required: true,
                   pattern: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/
                 })}
-                onChange={event => setEmailUniqe("")}
+                onChange={event => setConfirm("")}
               />
             </Form.Group>
 
@@ -99,31 +80,13 @@ export default function Registration(props) {
               />
             </Form.Group>
 
-            <Form.Group controlId="formBasicPasswordConfirmation">
-              <Form.Label className="h3 text-white">Password Confirmation</Form.Label>
-              {errors.passwordConfirmation?.type === 'required' && <div className='formError text-white'>確認用パスワードを入力してください</div>}
-              {errors.passwordConfirmation?.type === 'confirm' && <div className='formError text-white'>パスワードと一致しません</div>}
-              <div className="text-white"></div>
-              <Form.Control
-                name="passwordConfirmation"
-                type="password"
-                placeholder="もう一度パスワードを入力してください"
-                ref={register({
-                  required: true,
-                  validate: {
-                    confirm: value => value === Password
-                  }
-                })}
-              />
-            </Form.Group>
-
             <Col className="text-right">
               <Btn
                 size="lg"
                 variant="primary"
                 type="submit"
                 className="mt-3 signin"
-                nameValue="登録する"
+                nameValue="ログイン"
                 onClick={reset}
               />
             </Col>

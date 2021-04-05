@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import Home from './view/layouts/home/Home'
 import Registration from './view/layouts/home/auth/Registration'
+import Login from './view/layouts/home/auth/Login'
 import Dashboard from './view/layouts/dashboard/Dashboard'
 import Header from './view/components/header'
 import Footer from './view/components/footer'
@@ -61,6 +62,15 @@ export default function App() {
             exact path={ "/signup" }
             render={props => (
               <Registration {...props}
+                loggedInStatus={loggedInStatus}
+                handleSuccessfulAuthentication={handleSuccessfulAuthentication}
+              />
+            )}
+          />
+          <Route
+            exact path={ "/login" }
+            render={props => (
+              <Login {...props}
                 loggedInStatus={loggedInStatus}
                 handleSuccessfulAuthentication={handleSuccessfulAuthentication}
               />
