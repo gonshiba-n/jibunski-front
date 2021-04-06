@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from 'react-router-dom';
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Form from 'react-bootstrap/Form';
@@ -16,6 +17,7 @@ export default function Registration(props) {
   const Password = watch('password')
   const PasswordConfirmation = watch('passwordConfirmation')
   const [EmailUnique, setEmailUniqe] = useState("")
+  const history = useHistory();
 
   const root = process.env.REACT_APP_APP_BACKEND_PATH
   const onSubmit = (event) => {
@@ -39,6 +41,7 @@ export default function Registration(props) {
       }
     }).catch(error => {
       console.log("error_message error", error)
+      history.push("/500")
     })
   }
 

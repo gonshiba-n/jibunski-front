@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 import Home from './view/layouts/home/Home'
@@ -8,6 +8,8 @@ import Login from './view/layouts/home/auth/Login'
 import Dashboard from './view/layouts/dashboard/Dashboard'
 import Header from './view/components/header'
 import Footer from './view/components/footer'
+import { ServerError } from './view/layouts/errors/500'
+import { NotFoundError } from './view/layouts/errors/404'
 
 export default function App() {
   // ログイン判定
@@ -83,6 +85,8 @@ export default function App() {
                 loggedInStatus={loggedInStatus} />
             )}
           />
+          <Route exact path={"/500"} component={ ServerError } />
+          <Route exact path={"/404"} component={ NotFoundError } />
         </Switch>
         <Footer />
       </BrowserRouter>
