@@ -29,7 +29,7 @@ export default function Home() {
                 nameValue="Signup"
               />
             </Link>
-            <Link to="/signup">
+            <Link to="/login">
               <Btn
                 size="lg"
                 variant="success"

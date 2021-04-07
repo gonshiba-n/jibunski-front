@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter, Switch, Route, useHistory } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import Home from './view/layouts/home/Home'
@@ -59,29 +59,37 @@ export default function App() {
           handleLogout={handleLogout}
         />
         <Switch>
-          <Route exact path={ "/" } component={ Home } />
+          <Route exact path={ "/" }
+            render={props => (loggedInStatus
+              ? <Redirect to="/dashboard" />
+              : <Home />
+            )}
+          />
           <Route
             exact path={ "/signup" }
-            render={props => (
-              <Registration {...props}
-                loggedInStatus={loggedInStatus}
-                handleSuccessfulAuthentication={handleSuccessfulAuthentication}
-              />
+            render={props => (loggedInStatus
+              ? (<Redirect to="/dashboard" />)
+              :<Registration {...props}
+                  loggedInStatus={loggedInStatus}
+                  handleSuccessfulAuthentication={handleSuccessfulAuthentication}
+                />
             )}
           />
           <Route
             exact path={ "/login" }
-            render={props => (
-              <Login {...props}
-                loggedInStatus={loggedInStatus}
-                handleSuccessfulAuthentication={handleSuccessfulAuthentication}
-              />
+            render={props => (loggedInStatus
+              ? (<Redirect to="/dashboard" />)
+              :<Login {...props}
+                  loggedInStatus={loggedInStatus}
+                  handleSuccessfulAuthentication={handleSuccessfulAuthentication}
+                />
             )}
           />
           <Route
             exact path={ "/dashboard" }
-            render={props =>(
-              <Dashboard {...props}
+            render={props => (!loggedInStatus
+              ? <Home />
+              :<Dashboard {...props}
                 loggedInStatus={loggedInStatus} />
             )}
           />
