@@ -33,6 +33,21 @@
     background-color: $must_hover_color!important;
   }
 }
+
+.user button{
+  background: none!important;
+  border: none!important;
+  color : $will_color;
+}
+.user button:hover{
+  background: none!important;
+  border: none!important;
+  color : $will_hover_color;
+}
+.dropdown-items{
+  left: unset!important;
+  right: 0!important;
+}
 // Home共通スタイル
 
 // ここからキャッチコピー

@@ -57,6 +57,7 @@ export default function App() {
         <Header
           loggedInStatus={loggedInStatus}
           handleLogout={handleLogout}
+          user={user}
         />
         <Switch>
           <Route exact path={ "/" }

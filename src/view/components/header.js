@@ -44,6 +44,7 @@ export default function Header(props) {
         <HeaderItems
           loggedInStatus={props.loggedInStatus}
           handleLogout={props.handleLogout}
+          user={props.user}
         />
       </Navbar.Collapse>
     </Navbar>
