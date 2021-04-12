@@ -1,0 +1,77 @@
+@import "../../styles/layouts/variable";
+
+// wcmシート===========================================
+.btn{
+  font-size: 1rem;
+  border-radius: 30px;
+  @include sp{
+    font-size: 0.8rem;
+  }
+}
+
+.base-tag{
+  border-radius: 30px!important;
+  display: block!important;
+  width: 90%!important;
+  margin: 0 auto;
+}
+
+#base-will{
+  font-size: 1rem;
+}
+
+.h2{
+  font-size: 30px;
+  font-weight: bold;
+  padding: 15px 0;
+}
+
+.h3{
+  font-size: $h3;
+  font-weight: bold;
+  padding: 15px 0;
+}
+
+.user_work_space{
+  padding: 100px 3% 0 3%;
+}
+
+.wcm-work-space{
+  margin: 0 auto;
+  padding: 3% 0;
+  border-top: 1px solid $main_color;
+}
+
+// (will,can,must)-tags
+@each $name, $val in $wcm_colors {
+  .#{$name}-tags{
+    margin: 3%;
+    box-sizing: border-box;
+    border: 2px solid ($val);
+  }
+}
+// (will,can,must)-buttons
+@each $name, $val in $wcm_colors {
+  .#{$name}-color{
+    color: #fff!important;
+    background-color: ($val)!important;
+    border-radius: 30px!important;
+  }
+}
+@each $name, $val in $wcm_hover_colors {
+  .#{$name}-color:hover{
+    color: #fff;
+    background-color: ($val)!important;
+  }
+}
+
+.tag{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3% 0;
+  .btn{
+    border-radius: 30px;
+    min-width: 100px;
+  }
+}
+// wcmシート
